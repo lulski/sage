@@ -1,7 +1,7 @@
 package com.lulski.blog.sage.user;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="users")
