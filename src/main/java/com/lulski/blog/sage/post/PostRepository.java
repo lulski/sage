@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostRepository extends JpaRepository<Post, String> {
 
-  public Optional<Post> findById(String id);
+  Optional<Post> findById(String id);
 
-  public List<Post> findByAuthor(String author);
+  List<Post> findByAuthor(String author);
 
 }
