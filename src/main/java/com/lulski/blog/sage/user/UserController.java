@@ -2,14 +2,20 @@
 
 package com.lulski.blog.sage.user;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.Link;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 
 //https://www.javaguides.net/2019/08/spring-boot-spring-data-jpa-postgresql-example.html
@@ -19,20 +25,28 @@ import java.util.Map;
 @RequestMapping("api/v1")
 public class UserController {
 
+
+
     @Autowired
     private UserRepository userRepository;
 
+//    @Autowired
+//    private UserRepresentationModelAssembler userRepresentationModelAssembler;
+
+
+    @Operation(summary = "Return all User entities")
     @GetMapping("/users")
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public ResponseEntity <List<User>> getAllUsers(){
+
+        return ResponseEntity.of(Optional.of(userRepository.findAll()));
     }
+
+    @Operation(summary = "Get user with Id")
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long id) throws UserNotFoundException {
-        User user = userRepository.findById(id).
-                orElseThrow(() -> new UserNotFoundException("User with ID: " + id + " doesn't exist"));
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long id){
+        Optional<User> optionalUser = userRepository.findById(id);
 
-        return ResponseEntity.ok().body(user);
-
+        return ResponseEntity.of(optionalUser);
     }
 
     @PostMapping("/user")

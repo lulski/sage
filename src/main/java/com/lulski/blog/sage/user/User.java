@@ -2,15 +2,20 @@ package com.lulski.blog.sage.user;
 
 
 import jakarta.persistence.*;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User extends RepresentationModel<User> {
 
     private long id;
     private String firstName;
     private String lastName;
     private String email;
+
 
 
     public User() {
