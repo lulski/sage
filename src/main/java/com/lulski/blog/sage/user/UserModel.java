@@ -1,7 +1,7 @@
-/*
 package com.lulski.blog.sage.user;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 public class UserModel extends RepresentationModel<UserModel> {
     private long id;
@@ -47,5 +47,8 @@ public class UserModel extends RepresentationModel<UserModel> {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void addSelfLink() {
+        this.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserController.class).getUserById(id)).withSelfRel());
+    }
 }
-*/
