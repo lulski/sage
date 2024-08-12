@@ -30,8 +30,9 @@ dependencies {
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas:3.3.1'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:3.3.1'
 
-    api libs.org.springframework.boot.spring.boot.starter.web
+//    api libs.org.springframework.boot.spring.boot.starter.web
     api libs.org.springframework.boot.spring.boot.starter.data.jpa
     api libs.jakarta.persistence.jakarta.persistence.api
     api libs.jakarta.servlet.jakarta.servlet.api
